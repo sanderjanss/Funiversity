@@ -58,8 +58,5 @@ public class ProfessorController {
         professorService.delete(id);
     }
 
-    @ExceptionHandler(NullPointerException.class)
-    protected void nullpointerException(NullPointerException ex, HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
-    }
+
 }

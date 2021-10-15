@@ -12,11 +12,9 @@ public class ProfessorMapper {
         return professorList.stream().map(this::toDto).collect(Collectors.toList());
     }
     public ProfessorDTO toDto(Professor professor) {
-        ProfessorDTO professorDTO = new ProfessorDTO(professor.getId(), professor.getFirstName(), professor.getLastName());
-        return professorDTO;
+        return new ProfessorDTO(professor.getId(), professor.getFirstName(), professor.getLastName());
     }
 
-    //CHEK THIS
     public Professor toProfessor(ProfessorDTO professorDTO) {
         return new Professor(professorDTO.getId(), professorDTO.getFirstName(), professorDTO.getLastName());
     }

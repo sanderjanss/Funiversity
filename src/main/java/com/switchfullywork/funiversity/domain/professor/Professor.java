@@ -5,13 +5,9 @@ import java.util.UUID;
 
 public class Professor {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
-
-
-    public Professor() {
-    }
+    private final Long id;
+    private final String firstName;
+    private final String lastName;
 
     public Professor(Long id, String firstName, String lastName) {
         this.id = id;

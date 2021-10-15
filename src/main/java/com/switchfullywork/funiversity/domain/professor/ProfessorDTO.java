@@ -4,13 +4,9 @@ import java.util.UUID;
 
 public class ProfessorDTO {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
-
-
-    protected ProfessorDTO() {
-    }
+    private final Long id;
+    private final String firstName;
+    private final String lastName;
 
     public ProfessorDTO(Long id, String firstName, String lastName) {
         this.id = id;
