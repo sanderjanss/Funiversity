@@ -19,8 +19,8 @@ public class CourseService {
         this.courseMapper = courseMapper;
     }
 
-    public List<Course> findAll(){
-        return courseRepository.findAll();
+    public List<Course> findAll(Long amountStudyPoints){
+        return courseRepository.findAll(amountStudyPoints);
     }
 
     public void save(CourseDTO courseDTO){

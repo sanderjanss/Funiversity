@@ -47,15 +47,19 @@ public class ProfessorController {
     @PutMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public void updateProfessor(@RequestBody ProfessorDTO professorDTO, @PathVariable("id") Long id){
-        logger.info("Professor updated");
-        professorService.update(professorDTO, id);
+        if(!(professorService.findById(id) == null)){
+            logger.info("Professor updated");
+            professorService.update(professorDTO, id);
+        }
     }
 
     @DeleteMapping(path = "{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProfessor(@PathVariable("id")Long id){
-        logger.info("Professor deleted");
-        professorService.delete(id);
+        if(!(professorService.findById(id) == null)) {
+            logger.info("Professor deleted");
+            professorService.delete(id);
+        }
     }
 
 

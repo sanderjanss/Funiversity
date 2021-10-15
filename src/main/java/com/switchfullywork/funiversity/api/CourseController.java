@@ -25,8 +25,8 @@ public class CourseController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<Course> findAll(){
-        return courseService.findAll();
+    public List<Course> findAll(@RequestParam Long amountStudyPoints){
+        return courseService.findAll(amountStudyPoints);
     }
 
     @PostMapping(produces = "application/json", consumes = "application/json")
