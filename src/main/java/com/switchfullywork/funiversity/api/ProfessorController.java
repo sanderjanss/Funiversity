@@ -36,26 +36,23 @@ public class ProfessorController {
     @PostMapping(produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveProfessor(@RequestBody ProfessorDTO professorDTO){
-        logger.info("Professor saved");
         professorService.save(professorDTO);
+        logger.info("Professor saved");
+
     }
 
     @PutMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public void updateProfessor(@RequestBody ProfessorDTO professorDTO, @PathVariable("id") Long id){
-        if(!(professorService.findById(id) == null)){
-            logger.info("Professor updated");
             professorService.update(professorDTO, id);
-        }
+            logger.info("Professor updated");
     }
 
     @DeleteMapping(path = "{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProfessor(@PathVariable("id")Long id){
-        if(!(professorService.findById(id) == null)) {
-            logger.info("Professor deleted");
             professorService.delete(id);
-        }
+            logger.info("Professor deleted");
     }
 
 

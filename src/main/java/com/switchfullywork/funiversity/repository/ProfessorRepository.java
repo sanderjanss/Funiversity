@@ -1,6 +1,7 @@
 package com.switchfullywork.funiversity.repository;
 
 import com.switchfullywork.funiversity.domain.professor.Professor;
+import com.switchfullywork.funiversity.exceptions.NoSuchProfessorException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -18,11 +19,10 @@ public class ProfessorRepository {
     }
 
     public Professor getById(Long id) throws IllegalArgumentException{
-        var foundProfessor = professorByIdDatabase.get(id);
-        if(foundProfessor == null) {
-            throw new IllegalArgumentException("No Professor could be found for id " + id);
+        if(!professorByIdDatabase.containsKey(id)) {
+            throw new NoSuchProfessorException("No Professor could be found for id " + id);
         }
-        return foundProfessor;
+        return professorByIdDatabase.get(id);
     }
 
     public List<Professor> findAll() {
@@ -34,12 +34,18 @@ public class ProfessorRepository {
     }
 
     public void update(Professor professor, Long id){
-        if(professorByIdDatabase.containsKey(id)){
+        if (!professorByIdDatabase.containsKey(id)) {
+            throw new NoSuchProfessorException("No Professor could be updated for id " + id);
+        } else {
             professorByIdDatabase.put(id, professor);
         }
     }
 
     public void delete(Long id){
-        professorByIdDatabase.remove(id);
+        if (!professorByIdDatabase.containsKey(id)) {
+            throw new NoSuchProfessorException("No Professor could be deleted for id " + id);
+        } else {
+            professorByIdDatabase.remove(id);
+        }
     }
 }

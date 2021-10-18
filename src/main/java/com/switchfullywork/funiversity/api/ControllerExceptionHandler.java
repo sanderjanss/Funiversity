@@ -14,12 +14,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = NullPointerException.class)
     protected void nullpointerException(NullPointerException ex, HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.BAD_REQUEST.value(), "Object cant be null");
+        response.sendError(HttpStatus.BAD_REQUEST.value(), "Professor is null and cant be null");
     }
 
     @ExceptionHandler(value = NoSuchProfessorException.class)
     protected void nosuchprofessorException(NoSuchProfessorException nspe, HttpServletResponse response) throws  IOException{
-        response.sendError(HttpStatus.BAD_REQUEST.value(), nspe.getMessage());
+        response.sendError(HttpStatus.NOT_FOUND.value(), "We could not find a Professor for the provided ID");
     }
 
 }

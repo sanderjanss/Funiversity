@@ -21,7 +21,7 @@ public class Course {
         return id;
     }
 
-    public void setAmountOfStudyPoints(int amountOfStudyPoints) {
+    private void setAmountOfStudyPoints(int amountOfStudyPoints) {
         if(amountOfStudyPoints< 7 && amountOfStudyPoints > 0){
             this.amountOfStudyPoints = amountOfStudyPoints;
         }
