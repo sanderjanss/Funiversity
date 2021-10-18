@@ -4,7 +4,9 @@ import com.switchfullywork.funiversity.domain.professor.ProfessorDTO;
 import com.switchfullywork.funiversity.service.ProfessorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,11 +36,12 @@ public class ProfessorController {
     }
 
     @PostMapping(produces = "application/json", consumes = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void saveProfessor(@RequestBody ProfessorDTO professorDTO){
+    public ResponseEntity<ProfessorDTO> saveProfessor(@RequestBody ProfessorDTO professorDTO){
         professorService.save(professorDTO);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-type", "application/json");
         logger.info("Professor saved");
-
+        return new ResponseEntity<>(professorDTO, headers, HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
