@@ -25,7 +25,7 @@ public class CourseController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<Course> findAll(@RequestParam Long amountStudyPoints){
+    public List<Course> findAll(@RequestParam(value = "amountSP") Long amountStudyPoints){
         return courseService.findAll(amountStudyPoints);
     }
 
