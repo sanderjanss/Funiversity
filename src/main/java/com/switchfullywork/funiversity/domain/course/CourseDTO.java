@@ -6,18 +6,30 @@ public class CourseDTO {
 
     private final Long id;
     private final String name;
-    private final int amountOfStudyPoints;
-    private Professor professor;
+    private int amountOfStudyPoints;
+    private final Professor professor;
 
     public CourseDTO(Long id, String name, int amountOfStudyPoints, Professor professor) {
         this.id = id;
         this.name = name;
-        this.amountOfStudyPoints = amountOfStudyPoints;
+        setAmountOfStudyPoints(amountOfStudyPoints);
         this.professor = professor;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setAmountOfStudyPoints(int amountOfStudyPoints) {
+        if(amountOfStudyPoints< 7 && amountOfStudyPoints > 0){
+            this.amountOfStudyPoints = amountOfStudyPoints;
+        }
+        if(amountOfStudyPoints < 1){
+            this.amountOfStudyPoints = 1;
+        }
+        if(amountOfStudyPoints>6){
+            this.amountOfStudyPoints = 6;
+        }
     }
 
     public String getName() {
