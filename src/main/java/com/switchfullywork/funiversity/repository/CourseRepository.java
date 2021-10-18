@@ -11,11 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class CourseRepository {
 
-    private ConcurrentHashMap<Long, Course> courseByIdDatabase;
+    private final ConcurrentHashMap<Long, Course> courseByIdDatabase;
 
     public CourseRepository() {
         this.courseByIdDatabase = new ConcurrentHashMap<>();
         courseByIdDatabase.put(1L, new Course(1L, "Java", 3, new Professor(1L, "Sander", "Janssens")));
+        courseByIdDatabase.put(2L, new Course(2L, "PHP", 2, new Professor(1L, "Sander", "Janssens")));
     }
 
     public List<Course> findAll(Long amountStudyPoints){
