@@ -27,6 +27,9 @@ public class CourseRepository {
         }
         return lijst;
     }
+    public List<Course> findAll(){
+        return new ArrayList<>(courseByIdDatabase.values());
+    }
 
     public void save(Course course){
         courseByIdDatabase.put(course.getId(), course);

@@ -29,6 +29,12 @@ public class CourseController {
         return courseService.findAll(amountStudyPoints);
     }
 
+    @GetMapping(produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Course> findAll(){
+        return courseService.findAll();
+    }
+
     @PostMapping(produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveCourse(@RequestBody CourseDTO courseDTO){
