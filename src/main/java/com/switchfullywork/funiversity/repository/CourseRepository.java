@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -19,16 +20,16 @@ public class CourseRepository {
         courseByIdDatabase.put(2L, new Course(2L, "PHP", 2, new Professor(1L, "Sander", "Janssens")));
     }
 
-    public List<Course> findAll(Long amountStudyPoints){
-        List<Course> lijst = new ArrayList<>();
-        for (Course course : courseByIdDatabase.values()) {
-            if(course.getAmountOfStudyPoints() == amountStudyPoints){
-                lijst.add(course);
+    public List<Course> findAll(Optional<Long> amountStudyPoints){
+        if(amountStudyPoints.isPresent()){
+            List<Course> lijst = new ArrayList<>();
+            for (Course course : courseByIdDatabase.values()) {
+                if(course.getAmountOfStudyPoints() == amountStudyPoints.get()){
+                    lijst.add(course);
+                }
             }
+            return lijst;
         }
-        return lijst;
-    }
-    public List<Course> findAll(){
         return new ArrayList<>(courseByIdDatabase.values());
     }
 

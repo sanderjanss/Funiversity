@@ -14,6 +14,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 //WAY ONE of converting exceptions to an HTTP response Status
 @ControllerAdvice
@@ -34,6 +39,25 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 //    protected void nullpointerException(RuntimeException e, HttpServletResponse response) throws IOException {
 //        response.sendError(HttpStatus.BAD_REQUEST.value(), "Professor is null and cant be null");
 //    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                  HttpHeaders headers,
+                                                                  HttpStatus status, WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", new Date());
+        body.put("status", status.value());
+
+        //Get all errors
+        List<String> errors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(x -> x.getDefaultMessage())
+                .collect(Collectors.toList());
+
+        body.put("errors", errors);
+        return new ResponseEntity<>(body, headers, status);
+    }
 
 //    @ExceptionHandler
 //    protected ResponseEntity<String> handle(NoSuchProfessorException noSuchProfessorException){

@@ -6,7 +6,9 @@ import com.switchfullywork.funiversity.domain.course.CourseMapper;
 import com.switchfullywork.funiversity.repository.CourseRepository;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -19,12 +21,10 @@ public class CourseService {
         this.courseMapper = courseMapper;
     }
 
-    public List<Course> findAll(Long amountStudyPoints){
+    public List<Course> findAll(Optional<Long> amountStudyPoints){
         return courseRepository.findAll(amountStudyPoints);
     }
-    public List<Course> findAll(){
-        return courseRepository.findAll();
-    }
+
 
     public void save(CourseDTO courseDTO){
         courseRepository.save(courseMapper.toCourse(courseDTO));
