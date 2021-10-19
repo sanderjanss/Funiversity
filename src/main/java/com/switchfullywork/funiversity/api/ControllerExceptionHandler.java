@@ -15,18 +15,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 
+//WAY ONE of converting exceptions to an HTTP response Status
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = NullPointerException.class)
-    protected void nullpointerException(NullPointerException ex, HttpServletResponse response) throws IOException {
+    @ExceptionHandler(value = {NullPointerException.class})
+    protected void nullpointerException(NullPointerException npe, HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.BAD_REQUEST.value(), "Professor is null and cant be null");
     }
 
-    @ExceptionHandler(value = NoSuchProfessorException.class)
-    protected void nosuchprofessorException(NoSuchProfessorException nspe, HttpServletResponse response) throws  IOException{
-        response.sendError(HttpStatus.NOT_FOUND.value(), "We could not find a Professor for the provided ID");
-    }
+
+//    @ExceptionHandler(value = NoSuchProfessorException.class)
+//    protected void nosuchprofessorException(NoSuchProfessorException nspe, HttpServletResponse response) throws  IOException{
+//        response.sendError(HttpStatus.NOT_FOUND.value(), "We could not find a Professor for the provided ID");
+//    }
+
+//    @ExceptionHandler(value = {NullPointerException.class, NoSuchProfessorException.class})
+//    protected void nullpointerException(RuntimeException e, HttpServletResponse response) throws IOException {
+//        response.sendError(HttpStatus.BAD_REQUEST.value(), "Professor is null and cant be null");
+//    }
 
 //    @ExceptionHandler
 //    protected ResponseEntity<String> handle(NoSuchProfessorException noSuchProfessorException){
