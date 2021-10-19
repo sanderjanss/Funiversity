@@ -6,7 +6,6 @@ import com.switchfullywork.funiversity.domain.course.CourseMapper;
 import com.switchfullywork.funiversity.repository.CourseRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 

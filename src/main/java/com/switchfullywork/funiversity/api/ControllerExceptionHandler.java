@@ -29,17 +29,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         response.sendError(HttpStatus.BAD_REQUEST.value(), "Professor is null and cant be null");
     }
 
-
-//    @ExceptionHandler(value = NoSuchProfessorException.class)
-//    protected void nosuchprofessorException(NoSuchProfessorException nspe, HttpServletResponse response) throws  IOException{
-//        response.sendError(HttpStatus.NOT_FOUND.value(), "We could not find a Professor for the provided ID");
-//    }
-
-//    @ExceptionHandler(value = {NullPointerException.class, NoSuchProfessorException.class})
-//    protected void nullpointerException(RuntimeException e, HttpServletResponse response) throws IOException {
-//        response.sendError(HttpStatus.BAD_REQUEST.value(), "Professor is null and cant be null");
-//    }
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
@@ -58,6 +47,16 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         body.put("errors", errors);
         return new ResponseEntity<>(body, headers, status);
     }
+
+//    @ExceptionHandler(value = NoSuchProfessorException.class)
+//    protected void nosuchprofessorException(NoSuchProfessorException nspe, HttpServletResponse response) throws  IOException{
+//        response.sendError(HttpStatus.NOT_FOUND.value(), "We could not find a Professor for the provided ID");
+//    }
+
+//    @ExceptionHandler(value = {NullPointerException.class, NoSuchProfessorException.class})
+//    protected void nullpointerException(RuntimeException e, HttpServletResponse response) throws IOException {
+//        response.sendError(HttpStatus.BAD_REQUEST.value(), "Professor is null and cant be null");
+//    }
 
 //    @ExceptionHandler
 //    protected ResponseEntity<String> handle(NoSuchProfessorException noSuchProfessorException){
